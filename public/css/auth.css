@@ -1,0 +1,22 @@
+.login-form {
+    width: 20rem;
+    max-width: 90%;
+    margin: auto;
+    display: block;
+}
+
+.card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    width: 30%;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.card__header {
+    padding: 1rem;
+}
+
+.product__title {
+    font-size: 1.5rem;
+    text-align: center;
+}

@@ -1,0 +1,40 @@
+<%- include('../include/head.ejs') %>
+    </head>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/product.css">
+
+    <body>
+        <%- include('../include/nav.ejs') %>
+        <main style="display: flex; justify-content: center;">
+            <% if(products.length > 0 ) { %>
+                <ul class="card product-item">
+                    <% products.forEach(p => {%>
+                        <li>
+                            <h2 style="background-color: rgb(209, 247, 201);"><%= p.productID.title %></h2>
+                            <div class="card__image">
+                                <img src="<%= p.productID.img_url %>" alt="<%= p.productID.title %>">
+                            </div>
+                            <p> Quantitiy : <%= p.qty %></p>
+                            <form action="/cart-delete-item" method="POST">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <input type="hidden" name="productID" value="<%= p.productID._id %>">
+                                <button class="btn" type="submit">Delete</button>
+                            </form>
+                        
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <h1>No Products in Cart..!</h1>
+            <% } %>
+        </main>
+        <hr>
+                <div  style="display: flex; justify-content: center;">
+                    <!-- <form action="/create-order" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button class="btn" type="submit">Order Now!</button>
+                    </form> -->
+
+                    <a href="/checkout" class="btn">order Now!</a>
+                </div>
+        <%- include('../include/end.ejs') %>

@@ -1,0 +1,32 @@
+.btn {
+    background-color: #555555; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn_login{
+    background-color: #555555; /* Green */
+    border: none;
+    
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+    list-style: none;
+    text-decoration: none;
+}
+
+.btn_login a {
+    text-decoration: none;
+    color: white;
+}

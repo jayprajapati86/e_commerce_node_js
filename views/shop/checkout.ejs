@@ -1,0 +1,35 @@
+<%- include('../include/head.ejs') %>
+    </head>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/product.css">
+
+    <body>
+        <%- include('../include/nav.ejs') %>
+        <main style="display: flex; justify-content: center;">
+                <ul class="card product-item">
+                    <% products.forEach(p => {%>
+                        <li>
+                            <h2 style="background-color: rgb(209, 247, 201);"><%= p.productID.title %></h2>
+                            <div class="card__image">
+                                <img src="<%= p.productID.img_url %>" alt="<%= p.productID.title %>">
+                            </div>
+                            <p> Quantitiy : <%= p.qty %></p>
+                        </li>
+                    <% }) %>
+                    <h2>Total: <%= totalsum %></h2>
+                </ul>
+                <div>
+                    <button id="order-btn" class="btn">Confirm Order</button>
+                    <script src="https://js.stripe.com/v3/"></script>
+                    <script>
+                        var stripe = Stripe('pk_test_51KhAUPSDZQP3LR9LYhXLAlCOckk5LQ2BIQGijPkfBgbRTXNAOL9USwqnoLpD1wR9sLaYtQjZfPqY7Fl5vVnKQjCt001Y3oNqgP')
+                        var orderbtn = document.getElementsById('order-btn');
+                        orderbtn.addEventListener('click', function(){
+                            stripe.redirectToCheckout({
+                                sessionId: '<%= sessionId %>'
+                            })
+                        });
+                    </script>
+                </div>
+        </main>
+        <%- include('../include/end.ejs') %>

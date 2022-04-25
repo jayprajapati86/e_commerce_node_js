@@ -1,0 +1,52 @@
+<header class="main-header">
+    <nav class="main_nav">
+        <ul class="main_list">
+            <li class="main_item">
+                <a class="<%= path === '/' %>" href="/">Shop</a>
+            </li>
+            <li class="main_item">
+                <a class="<%= path === '/products' %>" href="/products">Products</a>
+            </li>
+            
+            <% if (varified) { %>
+                
+            <li class="main_item">
+                <a class="<%= path === '/cart' %>" href="/cart">Cart</a>
+            </li>
+            <li class="main_item">
+                <a class="<%= path === '/orders' %>" href="/orders">Orders</a>
+            </li>
+            <li class="main_item">
+                <a class="<%= path === '/add_product' %>" href="/add_product">Add Product
+                </a>
+            </li>
+            <li class="main_item">
+                <a class="<%= path === '/product' %>" href="/product">Admin Products
+                </a>
+            </li>
+            <% } %>
+        </ul>
+
+        <ul class="u_main_login">
+            
+            <% if (!varified) { %>
+                <li>
+                    <button class="btn_login">
+                        <a href="/signup">Signup</a>
+                    </button>
+
+                    <button class="btn_login">
+                        <a href="/login">Login</a>
+                    </button>
+                </li>
+            <% } else { %>
+                <li>
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button class="btn_login" style="background-color: #c9c9c9 !important;" type="submit">Logout</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>

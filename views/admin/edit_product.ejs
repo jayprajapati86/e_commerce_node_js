@@ -1,0 +1,59 @@
+<%- include('../include/head.ejs') %>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+
+
+    <%- include('../include/nav.ejs') %>
+    <!-- <main>
+        <form action="/add-product" method="POST">
+            <input type="text" name="title">
+            <button type="submit" class="button">Add product</button>
+        </form>
+    </main> -->
+
+    <main class="card_admin">
+        <% if (errorMessage) { %>
+            <div class="error_message"><%= errorMessage %></div>
+        <% } %>
+        <form class="product-form_admin" action="/<% if (editing) { %>edit-product<% } else { %>add_product<% } %>" method="POST">
+            <!-- <header class="card__header">
+                <h1 class="product__title">Add-Product</h1>
+            </header>  -->
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input 
+                class="<%= validationError.find(e => e.param === 'title') ? 'invalid' : '' %>"
+                type="text" name="title" id="title" value="<% if (editing || hasError) { %><%= product.title %><% } %>">
+            </div>
+
+            <div class="form-control">
+                <label for="img_url">Image URL</label>
+                <input 
+                class="<%= validationError.find(e => e.param === 'img_url') ? 'invalid' : '' %>"
+                type="text" name="img_url" id="img_url" value="<% if (editing || hasError) { %><%= product.img_url %><% } %>">
+            </div>
+            
+            <div class="form-control">
+                <label for="price">Price</label>
+                <input 
+                class="<%= validationError.find(e => e.param === 'price') ? 'invalid' : '' %>"
+                type="number" name="price" id="price" step="0.01" value="<% if (editing || hasError) { %><%= product.price %><% } %>">
+            </div>
+
+            <div class="form-control">
+                <label for="descrip">Description</label>
+                <textarea 
+                class="<%= validationError.find(e => e.param === 'descrip') ? 'invalid' : '' %>"
+                name="descrip" id="descrip" cols="30" rows="10" ><% if (editing || hasError) { %><%= product.descrip %><% } %></textarea>
+            </div>
+            <% if(editing) { %>
+                <input type="hidden" value="<%= product._id %>" name="productID">
+            <% } %>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn" type="submit" value="Upload"><% if (editing) { %>Update Product<% } else { %>Add Product<% } %></button>
+        </form>
+    </main>
+
+    <%- include('../include/end.ejs') %>
